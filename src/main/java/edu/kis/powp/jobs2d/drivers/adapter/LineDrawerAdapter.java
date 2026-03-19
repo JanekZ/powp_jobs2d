@@ -11,7 +11,7 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
  */
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver{
 	private int startX = 0, startY = 0;
-    enum lineTypeEnum {BASIC, DOTTED, SPECIAL};
+    public enum lineTypeEnum {BASIC, DOTTED, SPECIAL};
     private lineTypeEnum LineType;
 
 
