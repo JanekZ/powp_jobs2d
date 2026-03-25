@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.FiguresFactory;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelJob2dDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -30,6 +31,17 @@ public class TestJobs2dPatterns {
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener);
 	}
+    
+    private static void setupPresetFactories(Application application){
+        application.addTest("Square Factory Figure", (ActionEvent e) -> {
+            Job2dDriver driver = DriverFeature.getDriverManager().getCurrentDriver();
+            FiguresFactory.constructSquare(driver, 100).execute();
+        });
+        application.addTest("Triangle Factory Figure", (ActionEvent e) -> {
+            Job2dDriver driver = DriverFeature.getDriverManager().getCurrentDriver();
+            FiguresFactory.constructTriangle(driver, 100, 200).execute();
+        });
+    }
 
 	/**
 	 * Setup driver manager, and set default driver for application.
@@ -97,6 +109,7 @@ public class TestJobs2dPatterns {
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
 				setupPresetTests(app);
+                setupPresetFactories(app);
 				setupLogger(app);
 
 				app.setVisibility(true);
